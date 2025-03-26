@@ -1,0 +1,41 @@
+@model IEnumerable<todoApp.Models.Task>
+
+@{
+    ViewData["Title"] = "Task List";
+}
+
+<h1>Task List</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().Title)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Description)</th>
+            <th>@Html.DisplayNameFor(model => model.First().Status)</th>
+            <th>@Html.DisplayNameFor(model => model.First().CreatedAt)</th>
+            <th>@Html.DisplayNameFor(model => model.First().CompletedAt)</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => task.Title)</td>
+                <td>@Html.DisplayFor(modelItem => task.Description)</td>
+                <td>@Html.DisplayFor(modelItem => task.Status)</td>
+                <td>@Html.DisplayFor(modelItem => task.CreatedAt)</td>
+                <td>@Html.DisplayFor(modelItem => task.CompletedAt)</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@task.Id">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@task.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@task.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Create" class="btn btn-primary">Create New Task</a>
+</div>
